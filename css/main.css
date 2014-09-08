@@ -46,7 +46,7 @@ input#digit {
 }
 
 input#submit {
-	
+
 }
 
 div.guage {
@@ -55,7 +55,18 @@ div.guage {
 	float: right;
 	height: 50px;
 	width: 500px;
-	border: 2px solid;
+}
+
+div.feedback {
+	display: block;
+	background-color: black;
+	float: right;
+	height: 20px;
+	width: 350px;
+	position: relative;
+	top: 70px;
+	right: -400px;
+	padding-top: 5px;
 }
 
 div.replay {
@@ -71,3 +82,14 @@ input#restart {
 	font-size: 1em;
 	border-radius: 10px;
 }
+
+p.status {
+	display: block;
+}
+/*****************************
+		 JQUERY EXTRAS
+*****************************/
+
+/*p.reset {
+	padding: 20px;
+}*/
