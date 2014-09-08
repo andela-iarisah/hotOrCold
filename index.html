@@ -4,26 +4,29 @@
 		<title>Hot or Cold</title>
 		<meta charset= "utf-8">
 		<meta name= "viewport" content= "width= device-width, initial-scale= 1.0">
-		<script src= "js/jquery.js"></script>
-		<script src= "js/jqueryui.js"></script>
-		<script src= "js/hotorcold.js"></script>
+		
 		<link rel= "stylesheet" type= "text/css" href= "css/reset.css">
 		<link rel= "stylesheet" type= "text/css" href= "css/main.css">
 		<!-- <link rel= "stylesheet" type= "text/css" href= "responsive.css"> -->
 	</head>
 		<body>
 
-			<h1><font color= "red">Hot</font> or <font color= "blue">Cold</font></h1>
+			<h1><font color= "red" face= "segoe script">Hot</font> or <font color= "blue" face= "arial">Cold</font></h1>
 			<h2 class= "summary">Hot or cold allows you take a shot at guessing a certain number between 0 and 100. So how good is your guess?</h2>
 			<div class= "wrap">
 				<div class= "guess">
 					<p class= "game">Type in your guess</p>
-					<input type= "text" id= "digit" name= "digit" maxlength= "3"><br>
-					<input type= "submit" id= "submit" name= "submit">
-				</div>
-				<div class= "guage">
+					<form>
+						<input type= "text" id= "digit" name= "digit" maxlength= "3"><br>
+						<input type= "submit" value= "Submit" id= "submit" name= "submit">
+				</form>
 				</div>
 				<div class= "replay"><a href= "index.html"><input value= "Play Again?" type= "button" id= "restart"></a></div>
+				<div class= "guage">
+				</div>
 			</div>
+		<script src= "js/jquery.js"></script>
+		<script src= "js/jqueryui.js"></script>
+		<script src= "js/hotorcold.js"></script>
 		</body>
 </html>

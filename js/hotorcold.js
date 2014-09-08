@@ -1,30 +1,50 @@
-	var cmpChoice = Math.ceil(Math.random() * 100);
-	$(document).ready(function() {
+var cmpChoice = Math.ceil(Math.random() * 100);;
+var prevGuess, newGuess;
+var tries = 0;
+$('div.guage').hide();
 
+$('input#submit').click(function(event) {
+	event.preventDefault();
+ 	newGuess = parseInt($('input#digit').val());
+	if (isNaN(newGuess) || newGuess > 100 || newGuess < 0) {
+		$('div.guage').show().text('Please enter a valid input')
+	}
+	else {
+	 	if(tries === 0) {
+	 		if (cmpChoice === newGuess) {
+				$('div.guage').show().text('I give up! You are a darn good guesser');
+					$('input#digit').val('');
+			}
+			else if (cmpChoice > newGuess) {
+				$('div.guage').show().text("You're on the low low. Climb!");
+					$('input#digit').val('');
+			}
+			else {
+				$('div.guage').show().text("You're hot. Come down!");
+					$('input#digit').val('');
+			}
+	 	} else {
+	 		compare(newGuess);
+	 	}
+	 	prevGuess = newGuess;
+	 	tries++;
+	}
 	
-	var prevGuess = 0;
-	var compare = function() {
-	$('#submit').click(function() {
-		var userChoice = document.getElementById('digit').value;
-		var userChoiceInt = parseInt(userChoice);
-			if(isNaN(userChoiceInt) || userChoiceInt > 100 || userChoiceInt < 0) {
-				alert('Please enter a valid input');
-			}
-			else {
-				if (userChoiceInt === cmpChoice) {
-				alert("I give up! You're a darn good guesser");
-			}
-			else if (userChoiceInt < cmpChoice) {
-				alert("You're cold");
-			} 
-			else {
-				alert("You're hot");
-			}
-		}
-	});
-		
-};
-	compare();
-	console.log(cmpChoice);
+});
 
-});	
+var compare = function(guess) {
+	if (cmpChoice === newGuess) {
+		$('div.guage').show().text('You are a good guesser');
+	} else if (newGuess === prevGuess) {
+		$('div.guage').show().text('Giving up already?');
+		$('input#digit').val('');
+	} else if (Math.abs(cmpChoice - newGuess) > Math.abs(cmpChoice - prevGuess)) {
+		$('div.guage').show().text('I can feel the chills coming. Urgh!');
+		$('input#digit').val('');
+	} else {
+		$('div.guage').show().text('Za weee! You my friend are getting hotter');
+		$('input#digit').val('');
+	}
+};
+
+console.log(cmpChoice);
