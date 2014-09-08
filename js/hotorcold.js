@@ -1,38 +1,51 @@
-$(document).ready(function() {
-	var cmpChoice = Math.ceil(Math.random() * 100);	
-		$('input#submit').click(function() {
-			function compare() {
-				var userChoice = document.getElementById('digit').value;
-				var userChoiceInt = parseInt(userChoice);
-				var newGuess = 0;
-					if (isNaN(userChoiceInt) || userChoiceInt > 100 || userChoiceInt < 0) {
-						$('p.status').append("Please put in a valid input");
-					}
-					else {
-						if (userChoiceInt === cmpChoice) {
-						$('p.status').append("<p>I give up! You are a darn good guesser</p>");
-					}
-						// else {
-						// 	function reCheck = 
-						// }
-				
+var cmpChoice = Math.ceil(Math.random() * 100);;
+var prevGuess, newGuess;
+var tries = 0;
+$('div.guage').hide();
 
-
-
-				// 		else if (userChoiceInt < cmpChoice) {
-				// 		$('p.status').append("<p>You are cold</p>");
-				// 	} 
-				// 		else {
-				// 		$('p.status').append("<p>You are hot</p>");
-				// 	}
-				// }
-				// 	$('p.status').
-					// $('input#digit').setAttribute(userChoiceInt, newGuess) 
-					// if ((cmpChoice - newGuess) > (cmpChoice - oldGuess)) {
-					// 	$('div.guage').append("<p>You are hotter</p>");
-					// }
-	};
-			compare();
-			console.log(cmpChoice);
+$('input#submit').click(function(event) {
+	event.preventDefault();
+ 	newGuess = parseInt($('input#digit').val());
+	if (isNaN(newGuess) || newGuess > 100 || newGuess < 0) {
+		$('div.guage').show().text('Please enter a valid input');
+			$('input#digit').val('');
+	}
+	else {
+	 	if(tries === 0) {
+	 		if (cmpChoice === newGuess) {
+				$('div.guage').show().text('I give up! You are a darn good guesser');
+					$('input#digit').val('');
+			}
+			else if (cmpChoice > newGuess) {
+				$('div.guage').show().text("You're on the low low. Climb!");
+					$('input#digit').val('');
+			}
+			else {
+				$('div.guage').show().text("You're hot. Come down!");
+					$('input#digit').val('');
+			}
+	 	} else {
+	 		compare(newGuess);
+	 	}
+	 	prevGuess = newGuess;
+	 	tries++;
+	}
+	
 });
-});
+
+var compare = function(guess) {
+	if (cmpChoice === newGuess) {
+		$('div.guage').show().text('You are a good guesser');
+	} else if (newGuess === prevGuess) {
+		$('div.guage').show().text('Giving up already?');
+		$('input#digit').val('');
+	} else if (Math.abs(cmpChoice - newGuess) > Math.abs(cmpChoice - prevGuess)) {
+		$('div.guage').show().text('I can feel the chills coming. Urgh!');
+		$('input#digit').val('');
+	} else {
+		$('div.guage').show().text('Za weee! You my friend are getting hotter');
+		$('input#digit').val('');
+	}
+};
+
+console.log(cmpChoice);
