@@ -45,10 +45,6 @@ input#digit {
 	padding: 10px;
 }
 
-input#submit {
-	
-}
-
 div.guage {
 	display: inline-block;
 	background-color: blue;
