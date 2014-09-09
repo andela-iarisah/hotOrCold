@@ -1,9 +1,17 @@
 var cmpChoice = Math.ceil(Math.random() * 100);;
 var prevGuess, newGuess;
 var tries = 0;
-$('div.guage').hide();
+		
 
-$('input#submit').click(function(event) {
+var game =  {
+
+	init: function() {
+		$('input#submit').click(game.gamePlan);
+		$('div.guage').hide();
+		console.log(cmpChoice);
+	},
+
+ gamePlan: function(event) {
 	event.preventDefault();
  	newGuess = parseInt($('input#digit').val());
 	if (isNaN(newGuess) || newGuess > 100 || newGuess < 0) {
@@ -23,17 +31,18 @@ $('input#submit').click(function(event) {
 			else {
 				$('div.guage').show().text("You're hot. Come down!");
 					$('input#digit').val('');
-			}
-	 	} else {
-	 		compare(newGuess);
+				}
+	 		} 
+	 	else {
+	 		game.compare(newGuess);
 	 	}
-	 	prevGuess = newGuess;
-	 	tries++;
+	 		prevGuess = newGuess;
+	 		tries++;
 	}
 	
-});
+},
 
-var compare = function(guess) {
+compare: function(guess) {
 	if (cmpChoice === newGuess) {
 		$('div.guage').show().text('You are a good guesser');
 	} else if (newGuess === prevGuess) {
@@ -46,6 +55,8 @@ var compare = function(guess) {
 		$('div.guage').show().text('Za weee! You my friend are getting hotter');
 		$('input#digit').val('');
 	}
-};
+},
 
-console.log(cmpChoice);
+}
+
+$(document).ready(game.init);

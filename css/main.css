@@ -3,7 +3,8 @@
 *****************************/
 
 body {
-	background-image: url(../bgimage.jpg);
+	background-image: url(../trial.jpg);
+	background-size: cover;
 	margin: 20px;
 	color: white;
 	text-align: center;
@@ -45,6 +46,7 @@ p.game {
 input#digit {
 	display: block;
 	padding: 10px;
+	text-align: center;
 }
 
 input#digit:focus {
