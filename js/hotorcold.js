@@ -13,7 +13,7 @@ var game =  {
  gamePlan: function(event) {
 	event.preventDefault();
 	newGuess = parseInt($('input#digit').val());
-	if (newGuess > 100 || newGuess < 0) {
+	if (isNaN(newGuess) || newGuess > 100 || newGuess < 0) {
 		$('div.guage').show().text('Please enter a valid input');
 			$('input#digit').val('');
 	}
