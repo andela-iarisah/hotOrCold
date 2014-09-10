@@ -12,12 +12,13 @@ var game =  {
 
  gamePlan: function(event) {
 	event.preventDefault();
-	if (isNaN(newGuess) || newGuess > 100 || newGuess < 0) {
+	newGuess = parseInt($('input#digit').val());
+	if (newGuess > 100 || newGuess < 0) {
 		$('div.guage').show().text('Please enter a valid input');
 			$('input#digit').val('');
 	}
 	else {
-	 	if(tries === 0) {
+	 	if(tries === 0) { 
 	 		if (cmpChoice === newGuess) {
 				$('div.guage').show().text('I give up! You are a darn good guesser');
 					$('input#digit').val('');
