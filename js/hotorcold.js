@@ -4,13 +4,12 @@ var tries = 0;
 
 var game =  {
 
-	init: function() {
+init: function() {
 		$('input#submit').click(game.gamePlan);
 		$('div.guage').hide();
-		console.log(cmpChoice);
 	},
 
- gamePlan: function(event) {
+gamePlan: function(event) {
 	event.preventDefault();
 	newGuess = parseInt($('input#digit').val());
 	if (isNaN(newGuess) || newGuess > 100 || newGuess < 0) {
